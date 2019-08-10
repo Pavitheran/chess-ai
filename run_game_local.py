@@ -1,7 +1,7 @@
 from bots.random_bot import RandomBot
-
 import chess
 import chess.svg
+import click
 
 """
 Method consumes two ChessBot implementations and returns
@@ -31,14 +31,22 @@ def run_game(white, black):
 				return "WHITE ({})".format(white.get_name()), board
 		else:
 			return "DRAW", board
-
-
-if __name__ == '__main__':
+@click.command()
+@click.option("--svg_board", default=1,
+			  help="0 if you want to print the board in the terminal, 1 if you want an svg render")
+def main(svg_board):
 	print("Starting chess match between two bots")
 	# Replace below RandomBot instantiations with custom Bot implementations
 	white = RandomBot("Random Bot 1")
 	black = RandomBot("Random Bot 2")
 	winner, board = run_game(white, black)
 	#Using chess libray graphics interface to render board
-	chess.svg.board(board=board)
+	if svg_board:
+		chess.svg.board(board=board)
+	else:
+		print(board)
+
 	print("RESULT: " + winner)
+
+if __name__ == '__main__':
+	main()
