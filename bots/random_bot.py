@@ -19,5 +19,3 @@ class RandomBot(BaseChessBot):
 		legal_moves = list(board.legal_moves)
 		random_move = random.choice(legal_moves)
 		board.push(random_move)
-	def accept_surrender(self):
-		pass

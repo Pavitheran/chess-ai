@@ -20,6 +20,5 @@ class BaseChessBot(ABC):
 	method should return True if the bot wants to accept a surrender
 	and false otherwise.
 	"""
-	@abstractmethod
 	def accept_surrender(self, board):
-		pass
+		return False
