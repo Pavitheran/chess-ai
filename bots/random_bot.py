@@ -10,6 +10,8 @@ Most games between two RandomBots end in a DRAW.
 
 class RandomBot(BaseChessBot):
 	def __init__(self, name):
+
+		super().__init__()
 		self.name = name
 
 	def get_name(self):
