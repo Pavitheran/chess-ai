@@ -14,11 +14,3 @@ class BaseChessBot(ABC):
 	@abstractmethod
 	def play_move(self, board):
 		pass
-
-	"""
-	Given a standard chess game representation,
-	method should return True if the bot wants to accept a surrender
-	and false otherwise.
-	"""
-	def accept_surrender(self, board):
-		return False
