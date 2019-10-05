@@ -1,4 +1,5 @@
 from bots.random_bot import RandomBot
+from bots.simple_bot import SimpleBot
 import chess
 import chess.svg
 import click
@@ -37,7 +38,7 @@ def run_game(white, black):
 def main(svg_board):
 	print("Starting chess match between two bots")
 	# Replace below RandomBot instantiations with custom Bot implementations
-	white = RandomBot("Random Bot 1")
+	white = SimpleBot("Random Bot 1",1)
 	black = RandomBot("Random Bot 2")
 	winner, board = run_game(white, black)
 	#Using chess libray graphics interface to render board
