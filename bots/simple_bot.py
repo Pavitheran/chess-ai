@@ -50,9 +50,9 @@ class SimpleBot(BaseChessBot):
         for i,move in enumerate(legal_moves):
             check_board.push(move)
             value = simple_eval(board)
-            #value = value if self.color == 1 else -1*value
+            value = value if self.color == 1 else -1*value
             move_values[i] += value
             check_board.pop()
 
-        select_move = np.argmax(value)
+        select_move = np.argmax(move_values)
         board.push(legal_moves[select_move])
