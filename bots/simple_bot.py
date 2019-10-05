@@ -1,4 +1,5 @@
 from bots.base_chess_bot import BaseChessBot
+from bots.alpha_beta_minimax import minimax
 import chess
 import random
 import numpy as np
@@ -28,7 +29,13 @@ def eval_side(board, color):
     return sum(pieces)
 
 
-def simple_eval(board): return eval_side(board, 1) - eval_side(board, 0)
+def simple_eval(board):
+    if board.is_checkmate():
+        return 1e+10
+    if board.is_variant_draw():
+        return -1e+10
+    else:
+        return eval_side(board, 1) - eval_side(board, 0)
 
 class SimpleBot(BaseChessBot):
 
@@ -49,7 +56,7 @@ class SimpleBot(BaseChessBot):
         check_board = board
         for i,move in enumerate(legal_moves):
             check_board.push(move)
-            value = simple_eval(board)
+            value = minimax(board, 2, simple_eval, 0)
             value = value if self.color == 1 else -1*value
             move_values[i] += value
             check_board.pop()
