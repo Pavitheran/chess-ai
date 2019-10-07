@@ -50,5 +50,5 @@ class SimpleBot(BaseChessBot):
 
     def play_move(self, board):
 
-        value, move = minimax(board, 2, self.simple_eval, -1e+10, 1e+10, 1)
+        value, move = minimax(board, 3, self.simple_eval, -1e+10, 1e+10, 1)
         board.push(move)

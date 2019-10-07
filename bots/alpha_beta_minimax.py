@@ -4,7 +4,7 @@ def minimax(board, depth, eval, alpha, beta, maximizing_player):
     @param int depth
     @param function eval #function to evaluate the board position
     @param boot maximizing_player
-    @rtype: chess.Move
+    @rtype: numeric, chess.Move
     '''
     if depth == 0 or board.is_game_over():
         return eval(board), None
@@ -23,7 +23,7 @@ def minimax(board, depth, eval, alpha, beta, maximizing_player):
                 max_eval = value
                 best_move = move
 
-            alpha = max(max_eval, alpha)
+            alpha = max(value, alpha)
             board.pop()
             if beta <= alpha:
                 break
@@ -40,7 +40,7 @@ def minimax(board, depth, eval, alpha, beta, maximizing_player):
                 min_eval = value
                 worst_move = move
 
-            beta = min(min_eval, beta)
+            beta = min(value, beta)
             board.pop()
             if beta <= alpha:
                 break

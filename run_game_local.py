@@ -38,8 +38,8 @@ def run_game(white, black):
 def main(svg_board):
 	print("Starting chess match between two bots")
 	# Replace below RandomBot instantiations with custom Bot implementations
-	white = SimpleBot("Random Bot 1",1)
-	black = RandomBot("Random Bot 2")
+	white = SimpleBot("Simple Bot",1)
+	black = RandomBot("Random Bot")
 	winner, board = run_game(white, black)
 	#Using chess libray graphics interface to render board
 	if svg_board:
