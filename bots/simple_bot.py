@@ -29,14 +29,6 @@ def eval_side(board, color):
     return sum(pieces)
 
 
-def simple_eval(board):
-    if board.is_checkmate():
-        return 1e+10
-    if board.is_variant_draw():
-        return -1e+10
-    else:
-        return eval_side(board, 1) - eval_side(board, 0)
-
 class SimpleBot(BaseChessBot):
 
     def __init__(self, name, color):
@@ -49,17 +41,14 @@ class SimpleBot(BaseChessBot):
     def get_name(self):
         return self.name
 
+    def simple_eval(self, board):
+        if board.is_checkmate():
+            return 1e+10
+        else:
+            val = eval_side(board, 1) - eval_side(board, 0)
+            return val if self.color==1 else -1*val
+
     def play_move(self, board):
 
-        legal_moves = list(board.legal_moves)
-        move_values = [0 for i in legal_moves]
-        check_board = board
-        for i,move in enumerate(legal_moves):
-            check_board.push(move)
-            value = minimax(board, 2, simple_eval, 0)
-            value = value if self.color == 1 else -1*value
-            move_values[i] += value
-            check_board.pop()
-
-        select_move = np.argmax(move_values)
-        board.push(legal_moves[select_move])
+        value, move = minimax(board, 2, self.simple_eval, -1e+10, 1e+10, 1)
+        board.push(move)
