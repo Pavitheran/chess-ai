@@ -2,7 +2,7 @@ from bots.base_chess_bot import BaseChessBot
 import chess
 import random
 
-""" 
+"""
 This example bot implementation makes random legal moves each turn.
 It is pretty bad but serves as an example of how to push moves onto the board.
 Most games between two RandomBots end in a DRAW.
@@ -10,6 +10,8 @@ Most games between two RandomBots end in a DRAW.
 
 class RandomBot(BaseChessBot):
 	def __init__(self, name):
+
+		super().__init__()
 		self.name = name
 
 	def get_name(self):
