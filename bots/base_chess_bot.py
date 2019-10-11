@@ -1,24 +1,20 @@
+"""Interface for chess bots."""
+
 from abc import ABC, abstractmethod
+
+
+# pylint: disable=R0201
 class BaseChessBot(ABC):
-	"""
-	Return the name of your chess bot
-	"""
-	@abstractmethod
-	def get_name(self):
-		pass
+    """Interface for all chess bots."""
 
-	"""
-	Method takes a standard chess game representation and
-	returns another game representation with the next move appended.
-	"""
-	@abstractmethod
-	def play_move(self, board):
-		pass
+    @abstractmethod
+    def get_name(self):
+        """Return name of bot."""
 
-	"""
-	Given a standard chess game representation,
-	method should return True if the bot wants to accept a surrender
-	and false otherwise.
-	"""
-	def accept_surrender(self, board):
-		return False
+    @abstractmethod
+    def play_move(self, board):
+        """Push move onto board."""
+
+    def accept_surrender(self):
+        """Return bool to accecpt/reject surrender."""
+        return False
